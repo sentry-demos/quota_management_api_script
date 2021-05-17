@@ -1,9 +1,7 @@
-# TODO: some imports might be redundant 
 import requests
 import jsons
 from xml.dom import minidom
 import sys
-# import getopt
 import logging
 from datetime import datetime
 from pytz import timezone
@@ -23,10 +21,10 @@ def do_setup():
     global configs
     global headers
     global current_datetime
-    required_config_keys = ["ORG_NAME", "AUTH_KEY", "CRITICAL", "WARNING", "SLEEP_TIME", "ALERT_RULE_SUFFIX"]
+    required_config_keys = ["ORG_NAME", "AUTH_KEY", "CRITICAL", "WARNING", "ALERT_RULE_SUFFIX"]
     try:
         # Init logger
-        current_datetime = datetime.now().strftime('%m-%d-%Y_%I:%M:%S %Z')
+        current_datetime = datetime.now().strftime('%m-%d-%Y_%I:%M:%S %Z').strip()
         logging.basicConfig(filename=f'alert_logfile_{current_datetime}.log', format='%(asctime)s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
         logging.getLogger().setLevel(logging.ERROR)
         logging.getLogger().setLevel(logging.INFO)
@@ -43,21 +41,13 @@ def do_setup():
         if not result:
             #print(diff)
             logging.error(f'These config {len(diff)} key(s) are missing from config file: {diff[:5]}')
-            sys.exit()
-
-        # for item in required_config_keys:
-        #     if item not in keys:
-        #         print(item)
-        #         logging.error(item + ' is a missing key in your config file.')
-        #         logging.error()
-                
+            sys.exit()   
       
         for key, value in configs.items():
             if(value.data == ''):
                 logging.error('Value for ' + key + ' is missing.')
                 sys.exit()
             
-
         # Init request headers
         headers = {'Authorization': "Bearer " + configs.get("AUTH_KEY").data, 'Content-Type' : 'application/json'}
     except Exception as e: 
@@ -128,7 +118,7 @@ def create_alerts():
     script_report = {"success": 0, "failed": 0, "exists": 0}
     alert_rule_suffix = configs.get("ALERT_RULE_SUFFIX").data
 
-    print('about to create alerts..')
+    print('about to create alerts..this may take some time. Please wait :)')
     for proj_name, teams in projects_dict.items():
         alert_name = proj_name.lower() + alert_rule_suffix
         
@@ -162,7 +152,7 @@ def create_alerts():
                 script_report["failed"] += 1
                 logging.error(f'create_alert: failed to create alert for project : {proj_name} - {e}')
                            
-            time.sleep(int(configs.get("SLEEP_TIME").data)/1000)
+            time.sleep(3) # setting to 3 seconds to prevent a potential 429 response
 
         else:
             script_report["exists"] += 1

@@ -1,8 +1,7 @@
-# TODO: some imports might be redundant 
+
 import requests
 import jsons
 from xml.dom import minidom
-# import xmltodict
 import sys
 import getopt
 import logging
@@ -84,7 +83,7 @@ def delete_alert(alert_name, alert_id, project_slug):
     global headers
     global configs
     global script_report
-
+    print('about to delete alert...')
     try:
         response = requests.delete(
             f'https://sentry.io/api/0/projects/{configs.get("ORG_NAME").data}/{project_slug}/alert-rules/{alert_id}/', 
