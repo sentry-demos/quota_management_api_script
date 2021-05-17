@@ -17,11 +17,11 @@ To setup the python env for this script:
 
 Prior to running create_alerts.py, you can configure the following fields in the config.properties file:
 
-1. `ORG_NAME= <org name> ` - This should be assigned to your Organization Slug, found under Settings --> General Settings.
+1. `ORG_NAME= <org name> ` - This should be assigned to your Organization Slug, found under `Settings` --> `General Settings`.
 
-2. `AUTH_KEY= <auth_key>` - Your **org level** auth key can be found under Settings --> Developer Settings --> Internal Integrations.
+2. `AUTH_KEY= <auth_key>` - Your **org level** auth key can be found under `Settings` --> `Developer Settings` --> `Internal Integrations`.
 
-    a. If you don't have Internal Integrations set up, select New Internal Integrations and provide a Name for your integration. 
+    a. If you don't have Internal Integrations set up, select `New Internal Integrations` and provide a Name for your integration. 
 
     b. The Project and Organization permissions should be set to Read & Write. 
     <img width="957" alt="Screen Shot 2021-05-17 at 2 29 02 PM" src="https://user-images.githubusercontent.com/82904656/118559227-7849c580-b71c-11eb-83ea-2b7fcdbe9461.png">
