@@ -183,7 +183,7 @@ def main(argv):
     global current_datetime
 
     do_setup()   
-    print(f"Reminder: Check log file alert_logfile_{current_datetime}.log for details.") 
+    print(f"Please Note: Check log file alert_logfile_{current_datetime}.log for details.") 
     get_alerts()
     get_projects()
     create_alerts()
