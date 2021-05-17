@@ -182,14 +182,15 @@ def main(argv):
     global script_report
     global current_datetime
 
-    do_setup()    
+    do_setup()   
+    print(f"Reminder: Check log file alert_logfile_{current_datetime}.log for details.") 
     get_alerts()
     get_projects()
     create_alerts()
 
     # Print final script status
     print("Script report:  ", script_report)
-    print(f"Check log file alert_logfile_{current_datetime}.log for details.")
+    
     
 if __name__ == '__main__':
      main(sys.argv[1:])
