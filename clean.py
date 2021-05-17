@@ -23,7 +23,7 @@ def do_setup():
     global headers
     try:
         # Init logger
-        current_datetime = datetime.now().strftime('%m-%d-%Y_%I:%M:%S %Z')
+        current_datetime = datetime.now().strftime('%m-%d-%Y_%I:%M:%S %Z').strip()
         logging.basicConfig(filename=f'alert_clean_logfile_{current_datetime}.log', format='%(asctime)s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
         logging.getLogger().setLevel(logging.ERROR)
         logging.getLogger().setLevel(logging.INFO)
