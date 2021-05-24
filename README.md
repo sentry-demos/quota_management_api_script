@@ -41,10 +41,6 @@ Prior to running create_alerts.py, you can configure the following fields in the
 
     > ```python3 create_alerts.py```
 
-2. Delete all Alert Rules:
-
-    > ```python3 clean.py```
-
 
 ## Confirm Alert Creation
 
